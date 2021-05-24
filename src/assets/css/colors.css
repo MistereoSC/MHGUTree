@@ -1,0 +1,43 @@
+  
+:root {
+  background: var(--background-global);
+  --background-tree-item: #244B54;
+  --border-tree-item: #9E604F;
+  --background-global: #1D2E3C;
+
+  --sharpness-red: #C00C38;
+  --sharpness-orange: #E85018;
+  --sharpness-yellow: #F0C830;
+  --sharpness-green: #58D000;
+  --sharpness-blue: #3068E8;
+  --sharpness-white: #F0F0F0;
+  --sharpness-purple: #CC33CC;
+
+  --rarity-1: #EDEDED;
+  --rarity-2: #9C54AF;
+  --rarity-3: #E9C352;
+  --rarity-4: #DB8A97;
+  --rarity-5: #6AB981;
+  --rarity-6: #6C77DD;
+  --rarity-7: #E55356;
+  --rarity-8: #92BFED;
+  --rarity-9: #E68E53;
+  --rarity-10: #E930EA;
+  --rarity-11: #E930EA;
+  --rarity-12: #E930EA;
+
+  --element-none: #14171A;
+  --element-dragon: #711ABD;
+  --element-blast: #CC450A;
+  --element-para: #B0EB00;
+  --element-sleep: #94DBEB;
+  --element-poison: #B655C9;
+  --element-thunder: #FFFF19;
+  --element-water: #006AEB;
+  --element-ice: #219CD1;
+  --element-fire: #DE0211;
+}
+
+body {
+  margin: 0;
+}
