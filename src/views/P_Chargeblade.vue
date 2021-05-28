@@ -120,6 +120,6 @@
   .tree-container{
     position: absolute;
     margin: 80px 30px;
-    min-width: 4400px;
+    min-width: 3460px;
   }
 </style>
