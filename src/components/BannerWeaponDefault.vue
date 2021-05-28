@@ -5,7 +5,9 @@
       width: statics.elementWidth+'px', 
       height: statics.elementHeight+'px',
       'border-color': calcEleColor
-  }">
+  }"
+  v-bind:class="{ mute: filtered }"
+  >
     <div class="con-ver" v-if="forkDepth!==null" v-bind:style="{height: calcConnectionLength+'px'}"></div>
     <h1 class = "wpn-title">{{wpn.name}}</h1>
     <div class= "rarity-circle" v-bind:style="{background: rarityColor}">{{wpn.rarity}}</div>
@@ -101,6 +103,10 @@ export default {
     forkDepth: {
       type: Number,
       default: null
+    },
+    filtered: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -286,6 +292,17 @@ hr{
   border-style: solid;
   padding: 0;
   border-radius: 8px;
+}
+.wpn-frame-default.mute:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .8;
+    border-radius: 5px;
 }
 .wpn-title {
   color: #FFF;

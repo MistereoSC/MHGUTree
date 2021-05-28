@@ -10,44 +10,34 @@
       <h3>Trees</h3>
       <div class="nav-list">
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/greatsword">Great Sword</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/longsword">Long Sword</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/swordandshield">Sword and Shield</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/dualblades">Dual Blades</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/hammer">Hammer</router-link>
         <p class="nav-item d" >Hunting Horn</p>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/lance">Lance</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/gunlance">Gunlance</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/switchaxe">Switch Axe</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/chargeblade">Charge Blade</router-link>
         <router-link 
-          v-on:click="ddActive = false" 
           class="nav-item" 
           to="/insectglaive">Insect Glaive</router-link>
         <p class="nav-item d" >Light Bowgun</p>
@@ -62,7 +52,10 @@
   export default {
     name: 'SelectMenu',
     props: {
-      title: String,
+      title: {
+        type: String,
+        default: "Unknown"
+      }
     },
     data () {
       return {
