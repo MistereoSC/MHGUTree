@@ -1,17 +1,15 @@
 <template>
-  <div class="main-w">
-    <div class="tree-container">
-      <BannerWeaponDefault 
-        v-for="item in wpntree" 
-        :key="item.id" 
-        :posH="item.hDepth" 
-        :posV="item.globalVDepth"
-        :shiftH="item.vDepth"
-        :wpn="item.data"
-      ></BannerWeaponDefault> 
-    </div>
+  <div class="tree-container">
+    <BannerWeaponDefault 
+      v-for="item in wpntree" 
+      :key="item.id" 
+      :posH="item.hDepth" 
+      :posV="item.globalVDepth"
+      :shiftH="item.vDepth"
+      :wpn="item.data"
+      :forkDepth="item.relativeVDepth"
+    ></BannerWeaponDefault> 
   </div>
-
 </template>
 
 <script>
@@ -39,10 +37,7 @@
 <style scoped>
   .tree-container{
     position: absolute;
-    margin-left: 10px;
-  }
-
-  h1 {
-    color: var(--rarity-7);
+    margin: 80px 30px;
+    min-width: 4400px;
   }
 </style>

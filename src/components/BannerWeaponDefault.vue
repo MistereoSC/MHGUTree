@@ -6,6 +6,7 @@
       height: statics.elementHeight+'px',
       'border-color': calcEleColor
   }">
+    <div class="con-ver" v-if="forkDepth!==null" v-bind:style="{height: calcConnectionLength+'px'}"></div>
     <h1 class = "wpn-title">{{wpn.name}}</h1>
     <div class= "rarity-circle" v-bind:style="{background: rarityColor}">{{wpn.rarity}}</div>
     <hr v-bind:style="{'border-color': calcEleColor}">
@@ -67,7 +68,7 @@ export default {
   data () {
     return {
       statics: {
-        marginTop: 30,
+        marginTop: 40,
         marginLeft:20,
         elementWidth: 200,
         elementHeight: 94,
@@ -92,6 +93,14 @@ export default {
     },
     wpn: {
       type: Object
+    },
+    fork: {
+      type: Boolean,
+      default: false
+    },
+    forkDepth: {
+      type: Number,
+      default: null
     }
   },
   computed: {
@@ -227,6 +236,10 @@ export default {
       if(this.wpn.element === "") {return false}
       return true
     },
+    calcConnectionLength(){
+      if(this.forkDepth==0){return 0}
+      else { return this.statics.elementHeight*(this.forkDepth-0.5) + this.forkDepth*(this.statics.marginTop) }
+    } 
   },
   created(){
     if(this.wpn.shelling_type==null && this.wpn.phial==null) {
@@ -237,6 +250,21 @@ export default {
 </script>
 
 <style scoped>
+.con-ver{
+  content: "";
+  position: absolute;
+  width: 30px;
+  border-style: solid;
+  border-color: var(--connection-tree-item);
+  border-left-width: 4px;
+  border-bottom-width: 4px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  display: inline-block;
+  left: -36px;
+  bottom: 50%;
+  z-index: -1;
+}
 hr{
   position: absolute;
   left: -2px;
@@ -314,7 +342,6 @@ hr{
   top: 46px;
   left: 3px;
 }
-
 .slots{
   padding: 0;
   margin: 0;

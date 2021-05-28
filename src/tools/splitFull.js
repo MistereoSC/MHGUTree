@@ -1,21 +1,56 @@
 var wpnlist;
 var finalArr;
 
-function SplitMain() {
-  //dlType("Bow", "bow");
-  //dlType("Charge Blade", "chargeblade");
-  //dlType("Dual Blades", "dualblades");
-  //dlType("Great Sword", "greatsword");
-  //dlType("Gunlance", "gunlance");
-  //dlType("Hammer", "hammer");
-  //dlType("Heavy Bowgun", "heavybowgun");
-  //dlType("Hunting Horn", "huntinghorn");
-  //dlType("Insect Glaive", "insectglaive");
-  //dlType("Lance", "lance");
-  //dlType("Light Bowgun","lightbowgun");
-  dlType("Long Sword","longsword");
-  //dlType("Switch Axe", "switchaxe");
-  //dlType("Sword and Shield", "swordandshield");
+function SplitMain(n) {
+  switch (n) {
+    case 'GSW':
+      dlType("Great Sword", "greatsword");
+      break;
+    case 'LSW':
+      dlType("Long Sword","longsword");
+      break;
+    case 'SNS':
+      dlType("Sword and Shield", "swordandshield");      
+      break;
+    case 'DBL':
+      dlType("Dual Blades", "dualblades");
+    break;
+    case 'HAM':
+      dlType("Hammer", "hammer");
+    break;
+    case 'HHO':
+      dlType("Hunting Horn", "huntinghorn");
+    break;
+    case 'LAN':
+      dlType("Lance", "lance");
+    break;
+    case 'GLA':
+      dlType("Gunlance", "gunlance");
+    break;
+    case 'SAX':
+      dlType("Switch Axe", "switchaxe");
+    break;
+    case 'CBL':
+      dlType("Charge Blade", "chargeblade");
+    break;
+    case 'IGL':
+      dlType("Insect Glaive", "insectglaive");
+    break;
+    case 'LBG':
+      dlType("Light Bowgun","lightbowgun");
+    break;
+    case 'HBG':
+      dlType("Heavy Bowgun", "heavybowgun");
+    break;
+    case 'BOW':
+      dlType("Bow", "bow");
+    break;
+  }
+
+
+
+
+
 }
 
 function gather(type,full){
@@ -82,11 +117,10 @@ function download(content, fileName, contentType) {
 function dlType(full, short){
   console.log("Gathering: "+full);
   wpnlist = new Array();
-  $.getJSON('../../public/json/origin/_all.json', function (data) {
+  $.getJSON('../json/origin/_all.json', function (data) {
     wpnlist = data;
   }).done( function(data) {
     gather(short,full)
-    alert("Downloading JSON for "+full)
     download(JSON.stringify(finalArr), 'WPN_'+short+'.json', 'application/json');
   });
 }

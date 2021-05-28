@@ -2,8 +2,10 @@
 :root {
   background: var(--background-global);
   --background-tree-item: #244B54;
+  --background-bright-tree-item: #355d66;
   --border-tree-item: #9E604F;
   --background-global: #1D2E3C;
+  --connection-tree-item: #90B0C0;
 
   --sharpness-red: #C00C38;
   --sharpness-orange: #E85018;
