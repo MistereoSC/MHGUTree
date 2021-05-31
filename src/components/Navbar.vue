@@ -7,6 +7,9 @@
       <h1>{{title}}</h1>
     </div>
     <div class="dropdown" v-if='ddActive'>
+      <router-link 
+          class="nav-item" 
+          to="/about">About</router-link>
       <h3>Trees</h3>
       <div class="nav-list">
         <router-link 
@@ -100,6 +103,7 @@
     top: 50px;
     z-index: 100;
     clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+    padding-top: 10px;
   }
   
   h3{

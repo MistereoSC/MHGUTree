@@ -1,6 +1,7 @@
 
 import { createWebHistory, createRouter } from 'vue-router';
 
+import About from '@/views/About.vue';
 
 import GS from '@/views/P_Greatsword.vue';
 import LS from '@/views/P_Longsword.vue';
@@ -17,6 +18,11 @@ const routes = [
 	{
 		path: '/',
 		redirect:'/greatsword'
+	},
+	{
+		path: '/about',
+		name: 'About',
+		component: About,
 	},
 	{
 		path: '/greatsword',
