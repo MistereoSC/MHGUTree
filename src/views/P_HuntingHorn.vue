@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Navbar title="Gunlance"></Navbar>
+    <Navbar title="Hunting Horn"></Navbar>
     <Filter 
       @reset="filterReset" 
       @apply="filterApply"
-      special="GL"
+      special="HH"
     ></Filter>
     <div class="tree-container">
       <BannerWeaponDefault 
@@ -16,7 +16,7 @@
         :wpn="item.data"
         :forkDepth="item.relativeVDepth"
         :filtered="item.filtered"
-        special="GL"
+        special="HH"
       ></BannerWeaponDefault> 
     </div>
   </div>
@@ -26,10 +26,10 @@
   import Navbar from  '../components/Navbar.vue'
   import Filter from  '../components/TreeFilter.vue'
   import BannerWeaponDefault from '../components/BannerWeaponDefault.vue'
-  import Tree from '../../public/json/weapons/trees/FLAT_gunlance.json'
+  import Tree from '../../public/json/weapons/trees/FLAT_huntinghorn.json'
 
   export default {
-  name: 'P_Gunlance',
+  name: 'P_HuntingHorn',
   components: {
     Navbar,
     Filter,
@@ -45,7 +45,7 @@
     for(var i = 0; i <this.wpntree.length; i++){
       this.wpntree[i].filtered=false
     }
-    console.log(this.wpntree.length+" items loaded for Gunlance.")
+    console.log(this.wpntree.length+" items loaded for Hunting Horn.")
   },
   methods: {
     filterApply(t){
@@ -104,6 +104,47 @@
               }
               break
             default:
+          }
+        }
+        for(var c=0;c<8;c++){
+          var n = "";
+          switch(c){
+            case 0:
+              n="C"
+              break
+            case 1:
+              n="B"
+              break
+            case 2:
+              n="G"
+              break
+            case 3:
+              n="O"
+              break
+            case 4:
+              n="P"
+              break
+            case 5:
+              n="R"
+              break
+            case 6:
+              n="W"
+              break
+            case 7:
+              n="Y"
+              break
+          }
+          if(t.notes[c]==1){
+            if(this.wpntree[i].data.notes[0] !== n && this.wpntree[i].data.notes[1] !== n && this.wpntree[i].data.notes[2] !== n){
+              this.wpntree[i].filtered=true;
+              continue
+            }
+          }
+          if(t.notes[c]==2){
+              if(this.wpntree[i].data.notes[0] == n || this.wpntree[i].data.notes[1] == n || this.wpntree[i].data.notes[2] == n){
+              this.wpntree[i].filtered=true;
+              continue
+            }
           }
         }
       }

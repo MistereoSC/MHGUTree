@@ -8,6 +8,7 @@ import LS from '@/views/P_Longsword.vue';
 import SNS from '@/views/P_SwordAndShield.vue';
 import DB from '@/views/P_Dualblades.vue';
 import H from '@/views/P_Hammer.vue';
+import HH from '@/views/P_HuntingHorn.vue';
 import L from '@/views/P_Lance.vue';
 import GL from '@/views/P_Gunlance.vue';
 import SA from '@/views/P_Switchaxe.vue';
@@ -48,6 +49,11 @@ const routes = [
 		path: '/hammer',
 		name: 'Tree_H',
 		component: H,
+	},
+	{
+		path: '/huntinghorn',
+		name: 'Tree_HH',
+		component: HH,
 	},
 	{
 		path: '/lance',

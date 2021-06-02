@@ -101,6 +101,19 @@
           <input type="radio" value="Green"   name="sharp" v-model="selNatSharp">
             <label for="Green">Green</label>
         </div>
+        <div class="row" v-if="special=='HH'">
+          <div class="row-text">
+            <h4>Notes:</h4>
+          </div>
+          <span class="note-span" v-on:click="updateNoteSelectState(0)" style="color:#0FF" v-bind:style="{'border-color':calcBorderColor(0)}">C</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(1)" style="color:#00F" v-bind:style="{'border-color':calcBorderColor(1)}">B</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(2)" style="color:#0F0" v-bind:style="{'border-color':calcBorderColor(2)}">G</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(3)" style="color:#FA0" v-bind:style="{'border-color':calcBorderColor(3)}">O</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(4)" style="color:#A0F" v-bind:style="{'border-color':calcBorderColor(4)}">P</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(5)" style="color:#F00" v-bind:style="{'border-color':calcBorderColor(5)}">R</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(6)" style="color:#FFF" v-bind:style="{'border-color':calcBorderColor(6)}">W</span>
+          <span class="note-span" v-on:click="updateNoteSelectState(7)" style="color:#FF0" v-bind:style="{'border-color':calcBorderColor(7)}">Y</span>
+        </div>
         <div class="row button-row">
           <button class="dropdown-button" v-on:click="resetFilter">
             <span class = "menu_icon">Reset</span>
@@ -130,13 +143,15 @@ export default {
       selElement: "Any",
       selPhial: "Any",
       selShell: "Any",
-      selNatSharp: "Any"
+      selNatSharp: "Any",
+      selNotes: [0,0,0,0,0,0,0,0],
     }
   },
   methods: {
     resetFilter(){
       this.selElement = this.selPhial = this.selShell = this.selNatSharp = "Any"
       this.selSlots = 0
+      this.selNotes = [0,0,0,0,0,0,0,0]
       this.$emit('reset')
     },
     applyFilter(){
@@ -146,9 +161,33 @@ export default {
         phial: this.selPhial,
         shell: this.selShell,
         slots: this.selSlots,
-        sharp: this.selNatSharp
+        sharp: this.selNatSharp,
+        notes: this.selNotes,
       }
       this.$emit('apply',tmp)
+    },
+    calcBorderColor(n){
+      switch(this.selNotes[n]){
+        case 0:
+          return "#999"
+        case 1:
+          return "#0F0"
+        case 2:
+          return "#F00"
+        default:
+          return "#999"
+      }
+    },
+    updateNoteSelectState(n){
+      switch(this.selNotes[n]){
+        case 0:
+        case 1:
+          this.selNotes[n]++
+          break
+        case 2:
+        default:
+          this.selNotes[n]=0
+      }
     }
   }
 }
@@ -218,5 +257,24 @@ export default {
     display: inline;
     padding: 0;
     margin: 0 10px 0 5px;
+  }
+  .note-span{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 3px;
+    border-radius: 50%;
+    border: 3px solid #999;
+    display: inline-block;
+    background: #333;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
   }
 </style>

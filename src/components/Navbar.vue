@@ -27,7 +27,9 @@
         <router-link 
           class="nav-item" 
           to="/hammer">Hammer</router-link>
-        <p class="nav-item d" >Hunting Horn</p>
+        <router-link 
+          class="nav-item" 
+          to="/huntinghorn">Hunting Horn</router-link>
         <router-link 
           class="nav-item" 
           to="/lance">Lance</router-link>

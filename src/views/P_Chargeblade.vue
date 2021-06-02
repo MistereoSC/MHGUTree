@@ -16,6 +16,7 @@
         :wpn="item.data"
         :forkDepth="item.relativeVDepth"
         :filtered="item.filtered"
+        special="CB"
       ></BannerWeaponDefault> 
     </div>
   </div>

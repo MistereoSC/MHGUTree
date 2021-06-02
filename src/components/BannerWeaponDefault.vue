@@ -10,7 +10,7 @@
   >
     <div class="con-ver" v-if="forkDepth!==null" v-bind:style="{height: calcConnectionLength+'px'}"></div>
     <h1 class = "wpn-title">{{wpn.name}}</h1>
-    <div class= "rarity-circle" v-bind:style="{background: rarityColor}">{{wpn.rarity}}</div>
+    <span class= "rarity-circle" v-bind:style="{background: rarityColor}"></span>
     <hr v-bind:style="{'border-color': calcEleColor}">
     <div class="values">
       <img class="val-icon" src="../assets/icons/ico_atk.png">
@@ -21,14 +21,22 @@
       <h3 class="val-text" v-bind:style="{color: calcAffColor}">{{wpn.affinity}}</h3>
       <img class="val-icon" v-if="calcHasElement" v-bind:src="calcEleIconPath">
       <h3 class="val-text"  v-if="calcHasElement">{{wpn.element_attack}}</h3>
+      <img class="val-icon" v-if="calcHasElement2&&special=='DB'" v-bind:src="calcEle2IconPath">
+      <h3 class="val-text"  v-if="calcHasElement2&&special=='DB'">{{wpn.element_2_attack}}</h3>
     </div>
-    <div class="phial" v-if="wpn.phial!==null">
+    <div class="phial" v-if="special=='SA'||special=='CB'">
       <img class="val-icon" v-bind:src="calcPhialIconPath">
       <h3 class="val-text">{{wpn.phial}}</h3>
     </div>
-    <div class="phial" v-if="wpn.shelling_type!==null">
-      <img class="phial-icon" v-bind:src="calcShellIconPath">
-      <h3 class="phial-text">{{wpn.shelling_type}}</h3>
+    <div class="phial" v-if="special=='GL'">
+      <img class="val-icon" v-bind:src="calcShellIconPath">
+      <h3 class="val-text">{{wpn.shelling_type}}</h3>
+    </div>
+    <div class="phial" v-if="special=='HH'">
+      <h3 class="val-text">Notes:</h3>
+      <img class="val-icon-note" v-bind:src="calcNoteIconPath(0)">
+      <img class="val-icon-note" v-bind:src="calcNoteIconPath(1)">
+      <img class="val-icon-note" v-bind:src="calcNoteIconPath(2)">
     </div>
 
     <div class=slots>{{calcSlots}}</div>
@@ -73,7 +81,7 @@ export default {
         marginTop: 40,
         marginLeft:20,
         elementWidth: 200,
-        elementHeight: 94,
+        elementHeight: 66,
 
         depthShift: 65,
         sharpLengthMulti: 3
@@ -107,6 +115,10 @@ export default {
     filtered: {
       type: Boolean,
       default: false
+    },
+    special: {
+      type: String,
+      default: "NA"
     }
   },
   computed: {
@@ -154,33 +166,106 @@ export default {
       }
     },
     calcEleColor(){
-            switch(this.wpn.element){
+      var t1 = "#A1827F"
+      var t2 = "#A1827F"
+      switch(this.wpn.element){
         case "":
-          return "#A1827F"
+          t1 ="#A1827F"
+          break
         case "Dragon":
-          return "#711ABD"
+          t1 ="#711ABD"
+          break
         case "Blastblight":
-          return "#CC450A"
+          t1 = "#CC450A"
+          break
         case "Paralysis":
-          return "#B0EB00"
+          t1 = "#B0EB00"
+          break
         case "Sleep":
-          return "#94DBEB"
+          t1 = "#94DBEB"
+          break
         case "Poison":
-          return "#B655C9"
+          t1 = "#B655C9"
+          break
         case "Thunder":
-          return "#FFFF19"
+          t1 = "#FFFF19"
+          break
         case "Water":
-          return "#006AEB"
+          t1 = "#006AEB"
+          break
         case "Ice":
-          return "#219CD1"
+          t1 = "#219CD1"
+          break
         case "Fire":
-          return "#DE0211"
+          t1 = "#DE0211"
+          break
         default:
-          return "#9E604F"
+          t1 = "#9E604F"
       }
+      switch(this.wpn.element_2){
+        case "":
+          t2 = t1
+          break
+        case "Dragon":
+          t2 ="#711ABD"
+          break
+        case "Blastblight":
+          t2 = "#CC450A"
+          break
+        case "Paralysis":
+          t2 = "#B0EB00"
+          break
+        case "Sleep":
+          t2 = "#94DBEB"
+          break
+        case "Poison":
+          t2 = "#B655C9"
+          break
+        case "Thunder":
+          t2 = "#FFFF19"
+          break
+        case "Water":
+          t2 = "#006AEB"
+          break
+        case "Ice":
+          t2 = "#219CD1"
+          break
+        case "Fire":
+          t2 = "#DE0211"
+          break
+        default:
+          t2 = t1
+      }
+      return t1 + " " + t2 + " " + t2 + " " + t1
     },
     calcEleIconPath(){
       switch(this.wpn.element){
+        case "":
+          return null
+        case "Dragon":
+          return require("../assets/icons/stats/dragon.png")
+        case "Blastblight":
+          return require("../assets/icons/stats/blast.png")
+        case "Paralysis":
+          return require("../assets/icons/stats/para.png")
+        case "Sleep":
+          return require("../assets/icons/stats/sleep.png")
+        case "Poison":
+          return require("../assets/icons/stats/poison.png")
+        case "Thunder":
+          return require("../assets/icons/stats/thunder.png")
+        case "Water":
+          return require("../assets/icons/stats/water.png")
+        case "Ice":
+          return require("../assets/icons/stats/ice.png")
+        case "Fire":
+          return require("../assets/icons/stats/fire.png")
+        default:
+          return null
+      }
+    },
+    calcEle2IconPath(){
+      switch(this.wpn.element_2){
         case "":
           return null
         case "Dragon":
@@ -242,14 +327,42 @@ export default {
       if(this.wpn.element === "") {return false}
       return true
     },
+    calcHasElement2(){
+      if(this.wpn.element_2 === "") {return false}
+      return true
+    },
     calcConnectionLength(){
       if(this.forkDepth==0){return 0}
       else { return this.statics.elementHeight*(this.forkDepth-0.5) + this.forkDepth*(this.statics.marginTop) }
     } 
   },
+  methods: {
+      calcNoteIconPath(n){
+      switch(this.wpn.notes[n]){
+        case 'B':
+          return require("../assets/icons/notes/blue.png")
+        case 'W':
+          return require("../assets/icons/notes/white.png")
+        case 'R':
+          return require("../assets/icons/notes/red.png")
+        case 'C':
+          return require("../assets/icons/notes/aqua.png")
+        case 'G':
+          return require("../assets/icons/notes/green.png")
+        case 'O':
+          return require("../assets/icons/notes/orange.png")
+        case 'P':
+          return require("../assets/icons/notes/purple.png")
+        case 'Y':
+          return require("../assets/icons/notes/yellow.png")
+        default:
+          return null
+      }
+    }
+  },
   created(){
-    if(this.wpn.shelling_type==null && this.wpn.phial==null) {
-      this.statics.elementHeight -= 20
+    if(this.special=='GL'||this.special=='HH'||this.special=='SA'||this.special=='CB') {
+      this.statics.elementHeight += 20
     }
   }
 }
@@ -274,7 +387,7 @@ export default {
 hr{
   position: absolute;
   left: -2px;
-  top: 19px;
+  top: 16px;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -308,56 +421,47 @@ hr{
   color: #FFF;
   font-size: 10pt;
   position: absolute;
-  left: 20px;
-  top: 3px;
+  left: 14px;
+  top: 1px;
   margin: 0;
+  font-weight: bold;
 }
 .rarity-circle {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   position: absolute;
   top: 3px;
   left: 2px;
-  color: #222;
-  font-size: 8pt;
-  font-weight: bold;
 }
 .values{
   position: absolute;
-
-  left: 3px;
-  top: 25px;
+  left: 2px;
+  top: 20px;
 }
 .val-icon{
-  margin-right: 2px;
-  width: 18px;
-  height: 18px;
-}
-.val-text{
-  margin-right: 8px;
-  font-size: 12pt;
-  vertical-align: top;
-  display: inline;
-  color: #FFF;
-}
-.phial-text{
-  margin-right: 8px;
-  font-size: 10pt;
-  vertical-align: top;
-  display: inline;
-  color: #FFF;
-}
-.phial-icon{
   margin-right: 2px;
   width: 16px;
   height: 16px;
 }
+.val-icon-note{
+  margin: -3px;
+  width: 22px;
+  height: 22px;
+}
+.val-text{
+  margin-right: 5px;
+  font-size: 11pt;
+  vertical-align: top;
+  display: inline;
+  color: #FFF;
+  font-weight: normal;
+}
 .phial{
   position: absolute;
   color: #FFF;
-  top: 46px;
-  left: 3px;
+  top: 40px;
+  left: 2px;
 }
 .slots{
   padding: 0;

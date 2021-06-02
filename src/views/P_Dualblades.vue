@@ -4,6 +4,7 @@
     <Filter 
       @reset="filterReset" 
       @apply="filterApply"
+      special="DB"
     ></Filter>
     <div class="tree-container">
       <BannerWeaponDefault 
@@ -15,6 +16,7 @@
         :wpn="item.data"
         :forkDepth="item.relativeVDepth"
         :filtered="item.filtered"
+        special="DB"
       ></BannerWeaponDefault> 
     </div>
   </div>
@@ -57,13 +59,13 @@
         }
         if(t.element!=="Any"){
           if(t.element == "None"){
-            if(this.wpntree[i].data.element !== ""){ 
+            if(this.wpntree[i].data.element !== "" && this.wpntree[i].data.element_2 !== ""){ 
               this.wpntree[i].filtered=true;
               continue;
             }
           }
           else{
-            if(this.wpntree[i].data.element !== t.element){ 
+            if(this.wpntree[i].data.element !== t.element && this.wpntree[i].data.element_2 !== t.element){ 
               this.wpntree[i].filtered=true;
               continue;
             }
