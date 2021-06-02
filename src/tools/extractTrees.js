@@ -15,11 +15,9 @@ function updateTreeDepth(){
   genesis = new TreeItem(0,0,0,new Array(),null,null,null,0)
   for(var i = 0; i < wpnlist.length; i++){
     if(wpnlist[i].parent_id == 0) {
-      console.log("Crawl within updateTreeDepth");
       genesis.children.push(new TreeItem(wpnlist[i].id, 0, 0, null, gVDepthPointer, null, wpnlist[i], null));
     }
   }
-  console.log("Added "+genesis.children.length+" children to genesis.")
   for(var i = 0; i < genesis.children.length; i++){
     var tmpWpn = wpnlist.find(obj => {
       return obj.id === genesis.children[i].id;
@@ -35,7 +33,6 @@ function crawl(parentItem,lastVerticalDepth,parentFamily,parentDepth) {
   var tmpWpn = wpnlist.find(obj => {
     return obj.id === parentItem.id;
   })
-  console.log("Crawling... ID: "+parentItem.id+" Name: "+tmpWpn.name);
   var nextDepth = lastVerticalDepth;
   if(parentFamily !== tmpWpn.family){
     nextDepth++;
@@ -66,9 +63,6 @@ function crawl(parentItem,lastVerticalDepth,parentFamily,parentDepth) {
   }
 }
 
-
-
-
 class TreeItem {
   constructor(id,hDepth,vDepth,children,globalVDepth,parentId,item,relativeVDepth){
     this.id = id;
@@ -82,14 +76,6 @@ class TreeItem {
       delete this.data.id;
       delete this.data.parent_id;
       delete this.data.children;
-      if(tWeaponType !== 'heavybowgun' && tWeaponType !== 'lightbowgun' && tWeaponType !== 'bow' && tWeaponType !== 'huntinghorn'){
-        if(this.data.phial === undefined){
-          this.data.phial = null;
-        }
-        if(this.data.shelling_type === undefined){
-          this.data.shelling_type = null;
-        }
-      }
     } else { this.data = null }
     this.children = children;
   }
@@ -105,6 +91,44 @@ class LinearizedItem {
     this.data = treeItem.data;
   }
 }
+class TinyLinearizedItem {
+  constructor(item){
+    this.id=item.id;
+    this.pId=item.parentId;
+    this.hD=item.hDepth;
+    this.vD=item.vDepth;
+    this.gvD=item.globalVDepth;
+    this.rvD=item.relativeVDepth;
+
+    this.data=new Object;
+    this.data.fam=item.data.family;
+    this.data.name=item.data.name;
+    this.data.rar=item.data.rarity;
+    this.data.atk=item.data.attack;
+    this.data.aff=item.data.aff;
+    this.data.def=item.data.defense;
+    this.data.ele=item.data.element;
+    this.data.ele_atk=item.data.element_attack;
+    if(item.data.element_2!==null)this.data.ele2=item.data.element_2;
+    if(item.data.element_2!==null)this.data.ele2_atk=item.data.element_2_attack;
+    this.data.slts=item.data.slots;
+    if(item.data.phial!==null)this.data.phl=item.data.phial;
+    if(item.data.shelling_type!==null)this.data.shl=item.data.shelling_type;
+    if(item.data.notes!==null)this.data.note=item.data.notes;
+    if(item.data.sharpness!==null)this.data.sha=item.data.sharpness;
+    if(item.data.sharpness_plus!==null)this.data.shap=item.data.sharpness_plus;
+    if(item.data.sharpness_plus2!==null)this.data.shapp=item.data.sharpness_plus2;
+
+    if(item.data.arc_shot!==null)this.data.arc=item.data.arc_shot;
+    if(item.data.coatings!==null)this.data.coat=item.data.coatings;
+    if(item.data.deviation!==null)this.data.dvn=item.data.deviation;
+    if(item.data.recoil!==null)this.data.rcl=item.data.recoil;
+    if(item.data.reload_speed!==null)this.data.rls=item.data.reload_speed;
+    if(item.data.rapid_fire!==null)this.data.rpf=item.data.rapid_fire;
+    if(item.data.ammo!==null)this.data.mun=item.data.ammo;
+    if(item.data.special_ammo!==null)this.data.s_mun=item.data.special_ammo;
+  }
+}
 function linearify(arr){
   for(var i = 0; i<arr.length; i++){
     gArr.push(new LinearizedItem(arr[i]));
@@ -112,6 +136,13 @@ function linearify(arr){
       linearify(arr[i].children)
     }
   }
+}
+function shrink(arr){
+  var gArrTiny = new Array()
+  for(var i = 0; i<arr.length; i++){
+    gArrTiny.push(new TinyLinearizedItem(arr[i]));
+  }
+  return gArrTiny;
 }
 function exdl(content, fileName, contentType) {
   var a = document.createElement("a");
@@ -131,5 +162,7 @@ function exType(n){
     linearify(genesis.children);
     //exdl(JSON.stringify(genesis.children), 'TREE_'+n+'.json', 'application/json');
     exdl(JSON.stringify(gArr), 'FLAT_'+n+'.json', 'application/json');
+    //var gArrTiny = shrink(gArr);
+    //exdl(JSON.stringify(gArrTiny), 'SHRUNK_'+n+'.json', 'application/json');
   });
 }
