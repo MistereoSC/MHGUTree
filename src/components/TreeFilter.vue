@@ -200,7 +200,7 @@ export default {
     width: 1000px;
     position: fixed;
     top: 0px;
-    z-index: 91;
+    z-index: 101;
     clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
   }
   .nav-toggle {
@@ -221,7 +221,7 @@ export default {
     width: 860px;
     height: 130px;
     top: 36px;
-    z-index: 90;
+    z-index: 100;
     clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
   }
   .dropdown-container{

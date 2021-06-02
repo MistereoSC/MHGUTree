@@ -8,46 +8,48 @@
     </div>
     <div class="dropdown" v-if='ddActive'>
       <router-link 
-          class="nav-item" 
+          class="nav-item msc" 
           to="/about">About</router-link>
       <h3>Trees</h3>
       <div class="nav-list">
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/greatsword">Great Sword</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/longsword">Long Sword</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/swordandshield">Sword and Shield</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/dualblades">Dual Blades</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/hammer">Hammer</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/huntinghorn">Hunting Horn</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/lance">Lance</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/gunlance">Gunlance</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/switchaxe">Switch Axe</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/chargeblade">Charge Blade</router-link>
         <router-link 
-          class="nav-item" 
+          class="nav-item bm" 
           to="/insectglaive">Insect Glaive</router-link>
         <p class="nav-item d" >Light Bowgun</p>
         <p class="nav-item d" >Heavy Bowgun</p>
-        <p class="nav-item d" >Bow</p>
+        <router-link 
+          class="nav-item gm" 
+          to="/bow">Bow</router-link>
       </div>
     </div>
   </div>
@@ -77,7 +79,7 @@
     width: 500px;
     position: fixed;
     top: 0px;
-    z-index: 101;
+    z-index: 111;
     clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
   }
   h1{
@@ -103,7 +105,7 @@
     background: var(--background-bright-tree-item);
     width: 280px;
     top: 50px;
-    z-index: 100;
+    z-index: 110;
     clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
     padding-top: 10px;
   }
@@ -125,8 +127,14 @@
     margin: 2px 0 5px 30px;
     text-decoration: none;
   }
-  .nav-item:not(.d):hover{
+  .nav-item.bm:not(.d):hover{
     color: #e03232;
+  }
+  .nav-item.gm:not(.d):hover{
+    color: #6C77DD;
+  }
+  .nav-item.msc:not(.d):hover{
+    color: #6AB981;
   }
   .d{
         color: #333;

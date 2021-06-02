@@ -69,6 +69,34 @@
             }
           }
         }
+        for(var c=0;c<10;c++){
+          if(t.coatings[c]&&!this.wpntree[i].data.coatings[c]){
+              this.wpntree[i].filtered=true;
+              continue;
+          }
+        }
+        for(c=0;c<4;c++){
+          if(!t.charges[c][0] && this.wpntree[i].data.charges[c].substr(0,this.wpntree[i].data.charges[c].indexOf(' '))=="Rapid"){
+            this.wpntree[i].filtered=true;
+            continue;
+          }
+          if(!t.charges[c][1] && this.wpntree[i].data.charges[c].substr(0,this.wpntree[i].data.charges[c].indexOf(' '))=="Pierce"){
+            this.wpntree[i].filtered=true;
+            continue;
+          }
+          if(!t.charges[c][2] && this.wpntree[i].data.charges[c].substr(0,this.wpntree[i].data.charges[c].indexOf(' '))=="Spread"){
+            this.wpntree[i].filtered=true;
+            continue;
+          }
+          if(!t.charges[c][3] && this.wpntree[i].data.charges[c].substr(0,this.wpntree[i].data.charges[c].indexOf(' '))=="Heavy"){
+            this.wpntree[i].filtered=true;
+            continue;
+          }
+        }
+        if(!t.charges[3][4] && this.wpntree[i].data.charges[3]==""){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
       }
     },
     filterReset(){

@@ -357,7 +357,7 @@ hr{
   border-radius: 0 0 8px 8px;
   cursor: pointer;
   height: 68px;
-  z-index: 100;
+  z-index: 10;
 }
 .wpn-title {
   color: #FFF;
@@ -400,7 +400,7 @@ hr{
   position: absolute;
   font-size: 12pt;
   font-weight: bold;
-  top: 18px;
+  top: 24px;
   right: 5px;
   color: #FFF;
   text-align: right;
