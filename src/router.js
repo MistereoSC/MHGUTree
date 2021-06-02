@@ -14,6 +14,7 @@ import GL from '@/views/P_Gunlance.vue';
 import SA from '@/views/P_Switchaxe.vue';
 import CB from '@/views/P_Chargeblade.vue';
 import IG from '@/views/P_InsectGlaive.vue';
+import B from '@/views/P_Bow.vue';
 
 const routes = [
 	{
@@ -79,6 +80,11 @@ const routes = [
 		path: '/insectglaive',
 		name: 'Tree_IG',
 		component: IG,
+	},
+	{
+		path: '/bow',
+		name: 'Tree_B',
+		component: B,
 	},
 ];
 
