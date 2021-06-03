@@ -45,8 +45,12 @@
         <router-link 
           class="nav-item bm" 
           to="/insectglaive">Insect Glaive</router-link>
-        <p class="nav-item d" >Light Bowgun</p>
-        <p class="nav-item d" >Heavy Bowgun</p>
+        <router-link 
+          class="nav-item gm" 
+          to="/lightbowgun">Light Bowgun</router-link>
+        <router-link 
+          class="nav-item gm" 
+          to="/heavybowgun">Heavy Bowgun</router-link>
         <router-link 
           class="nav-item gm" 
           to="/bow">Bow</router-link>

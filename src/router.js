@@ -14,6 +14,8 @@ import GL from '@/views/P_Gunlance.vue';
 import SA from '@/views/P_Switchaxe.vue';
 import CB from '@/views/P_Chargeblade.vue';
 import IG from '@/views/P_InsectGlaive.vue';
+import LBG from '@/views/P_LightBowgun.vue';
+import HBG from '@/views/P_HeavyBowgun.vue';
 import B from '@/views/P_Bow.vue';
 
 const routes = [
@@ -80,6 +82,16 @@ const routes = [
 		path: '/insectglaive',
 		name: 'Tree_IG',
 		component: IG,
+	},
+	{
+		path: '/lightbowgun',
+		name: 'Tree_LBG',
+		component: LBG,
+	},
+	{
+		path: '/heavybowgun',
+		name: 'Tree_HBG',
+		component: HBG,
 	},
 	{
 		path: '/bow',
