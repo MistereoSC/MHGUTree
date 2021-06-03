@@ -21,12 +21,6 @@
             <label for="Thunder">Thunder</label>
           <input type="radio" value="Dragon" name="element" v-model="selElement"> 
             <label for="Dragon">Dragon</label>
-          <input type="radio" value="Sleep" name="element" v-model="selElement">
-            <label for="Sleep">Sleep</label>
-          <input type="radio" value="Paralysis" name="element" v-model="selElement">
-            <label for="Paralysis">Paralysis</label>
-          <input type="radio" value="Poison" name="element" v-model="selElement">
-            <label for="Poison">Poison</label>
         </div>
         <div class="row">
           <h4>Slots:</h4>
