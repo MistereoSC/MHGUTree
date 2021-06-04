@@ -98,6 +98,22 @@
             default:
           }
         }
+        if(parseInt(this.wpntree[i].data.affinity)<t.aff){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.defense<t.def){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.attack<t.atk){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.element_attack<t.ele){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
       }
     },
     filterReset(){

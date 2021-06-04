@@ -9,9 +9,14 @@
       <p>and from 
         <a href="https://mhapi.info/">Poogie's Toolbox</a>
       </p>
-      <h1>GitHub</h1>
       <p>See this project's source code on 
         <a href="https://github.com/MistereoSC/MHGUTree">GitHub</a>
+      </p>
+      <h2>Support</h2>
+      <p>If you have enough income to burn, and want to support me to</p>
+      <p>keep this site online, you can 
+        <a href="https://ko-fi.com/mistereosc">buy me a coffe</a>
+        !
       </p>
       <hr>
       <p class="subtext">If you have any suggestions or find any error, feel free to contact

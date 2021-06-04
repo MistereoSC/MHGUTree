@@ -6,6 +6,16 @@
     <div class="dropdown" v-if='ddActive'>
       <div class="dropdown-container">
         <div class="row">
+          <h4>Atk >=</h4>
+          <input type="number" min="0" max="400" step="5" v-model="selAtk">
+          <h4>Def >=</h4>
+          <input type="number" min="0" max="100" step="5" v-model="selDef">
+          <h4>Aff >=</h4>
+          <input type="number" min="-100" max="100" step="5" v-model="selAff">
+          <h4>Ele >=</h4>
+          <input type="number" min="0" max="100" step="5" v-model="selEle">
+        </div>
+        <div class="row">
           <div class="row-text">
             <h4>Element:</h4>
           </div>
@@ -145,6 +155,10 @@ export default {
       selShell: "Any",
       selNatSharp: "Any",
       selNotes: [0,0,0,0,0,0,0,0],
+      selAff: -100,
+      selDef: 0,
+      selEle: 0,
+      selAtk: 0,
     }
   },
   methods: {
@@ -152,6 +166,8 @@ export default {
       this.selElement = this.selPhial = this.selShell = this.selNatSharp = "Any"
       this.selSlots = 0
       this.selNotes = [0,0,0,0,0,0,0,0]
+      this.selDef = this.selEle = this. selAtk = 0
+      this.selAff = -100
       this.$emit('reset')
     },
     applyFilter(){
@@ -163,6 +179,10 @@ export default {
         slots: this.selSlots,
         sharp: this.selNatSharp,
         notes: this.selNotes,
+        aff: this.selAff,
+        def: this.selDef,
+        ele: this.selEle,
+        atk: this.selAtk
       }
       this.$emit('apply',tmp)
     },

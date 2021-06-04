@@ -6,6 +6,16 @@
     <div class="dropdown" v-if='ddActive'>
       <div class="dropdown-container">
         <div class="row">
+        <div class="row">
+          <h4>Atk >=</h4>
+          <input type="number" min="0" max="400" step="5" v-model="selAtk">
+          <h4>Def >=</h4>
+          <input type="number" min="0" max="100" step="5" v-model="selDef">
+          <h4>Aff >=</h4>
+          <input type="number" min="-100" max="100" step="5" v-model="selAff">
+          <h4>Ele >=</h4>
+          <input type="number" min="0" max="100" step="5" v-model="selEle">
+        </div>
           <h4>Element:</h4>
           <input type="radio" value="Any" name="element" v-model="selElement" :checked="selElement=='Any'">
             <label for="Any">Any</label>
@@ -127,6 +137,10 @@ export default {
         [true,true,true,true,true],
       ],
       selElement: "Any",
+      selAff: -100,
+      selDef: 0,
+      selEle: 0,
+      selAtk: 0,
     }
   },
   methods: {
@@ -140,6 +154,8 @@ export default {
         [true,true,true,true],
         [true,true,true,true,true],
       ],
+      this.selDef = this.selEle = this. selAtk = 0
+      this.selAff = -100
       this.$emit('reset')
     },
     applyFilter(){
@@ -149,6 +165,10 @@ export default {
         slots: this.selSlots,
         coatings: this.selCoatings,
         charges: this.selCharge,
+        aff: this.selAff,
+        def: this.selDef,
+        ele: this.selEle,
+        atk: this.selAtk,
       }
       this.$emit('apply',tmp)
     },

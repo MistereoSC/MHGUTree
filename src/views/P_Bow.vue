@@ -49,6 +49,22 @@
     filterApply(t){
       for(var i = 0; i <this.wpntree.length; i++){
         this.wpntree[i].filtered=false;
+        if(parseInt(this.wpntree[i].data.affinity)<t.aff){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.defense<t.def){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.attack<t.atk){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
+        if(this.wpntree[i].data.element_attack<t.ele){
+          this.wpntree[i].filtered=true;
+          continue;
+        }
         if(t.slots>0){
           if(this.wpntree[i].data.slots<t.slots){ 
             this.wpntree[i].filtered=true;
