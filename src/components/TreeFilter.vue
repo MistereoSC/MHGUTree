@@ -36,9 +36,11 @@
           <input type="radio" value="Sleep" name="element" v-model="selElement">
             <label for="Sleep">Sleep</label>
           <input type="radio" value="Paralysis" name="element" v-model="selElement">
-            <label for="Paralysis">Paralysis</label>
+            <label for="Paralysis">Para</label>
           <input type="radio" value="Poison" name="element" v-model="selElement">
             <label for="Poison">Poison</label>
+          <input type="radio" value="Blastblight" name="element" v-model="selElement">
+            <label for="Blastblight">Blast</label>
         </div>
         <div class="row" v-if="special=='SA'">
           <div class="row-text">
@@ -238,11 +240,11 @@ export default {
   .dropdown{
     position: fixed;
     background: var(--background-accent);
-    width: 860px;
+    width: 890px;
     height: 130px;
     top: 36px;
     z-index: 100;
-    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
   }
   .dropdown-container{
     position: absolute;
