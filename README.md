@@ -1,3 +1,9 @@
+# IMPORTANT NOTICE
+This is the old, outdated version of the MGHUTree Webpage. The new and Updated Version can be found [HERE](https://github.com/MistereoSC/MHGUTree-Revamped)
+<br>
+The new Webpage can be found at https://mhgutree.vercel.app/
+
+
 # MHGUTree
 This repository contains the source code for my MHGUTree website. An actual weapon tree for MHGU.
 <br>
